@@ -1,6 +1,7 @@
 package ir.bpm.tacocloud.controller;
 
 import ir.bpm.tacocloud.model.TacoOrder;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +22,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public String processOrder(TacoOrder order, SessionStatus sessionStatus) {
+    public String processOrder(@Valid TacoOrder order, SessionStatus sessionStatus) {
         log.info("Order submitted: {} ", order);
         sessionStatus.setComplete();
         return "redirect:/";
